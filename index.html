@@ -3,41 +3,172 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>We're Getting Married!</title>
-  <link rel="stylesheet" href="style.css"/>
+  <title>Victoria & Rahul's Wedding</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #fff9f9;
+      color: #3e3e3e;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #fce4ec;
+      padding: 2rem 1rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #b71c1c;
+    }
+
+    .subtitle {
+      font-size: 1.2rem;
+      font-style: italic;
+      color: #7b1c1c;
+      margin-top: 0.5rem;
+    }
+
+    .hero img {
+      width: 100%;
+      max-height: 500px;
+      object-fit: cover;
+    }
+
+    .details {
+      padding: 2rem;
+    }
+
+    .details h2 {
+      color: #b71c1c;
+    }
+
+    .rsvp-button {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background-color: #b71c1c;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+
+    #countdown {
+      margin: 2rem auto;
+      font-size: 1.5rem;
+      background-color: #fff;
+      display: inline-block;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background-color: #fce4ec;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .navbar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      background-color: #fce4ec;
+      padding: 1rem;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #b71c1c;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: #f8bbd0;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      #countdown {
+        font-size: 1.1rem;
+        padding: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
+
+  <!-- Navbar -->
+  <div id="nav-placeholder"></div>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+  </script>
+
   <header>
     <h1>Victoria & Rahul</h1>
     <p class="subtitle">We're getting married!</p>
   </header>
 
-  <nav>
-    <ul class="navbar">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="our-story.html">Our Story</a></li>
-      <li><a href="schedule.html">Schedule</a></li>
-      <li><a href="venue.html">Venue & Travel</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="registry.html">Registry</a></li>
-      <li><a href="rsvp.html">RSVP</a></li>
-    </ul>
-  </nav>
+  <div class="hero">
+    <img src="assets/images/couple.jpg" alt="Happy Couple"/>
+  </div>
 
-  <section id="countdown">
-    <h2>Countdown to Our Big Day</h2>
-    <div class="timer">
-      <span id="days"></span> days
-      <span id="hours"></span> hrs
-      <span id="minutes"></span> min
-      <span id="seconds"></span> sec
-    </div>
+  <section class="details">
+    <h2>Wedding Details</h2>
+    <p>Date: <strong>June 21, 2025</strong></p>
+    <p>Venue: <strong>Lakeview Gardens, Edinburgh</strong></p>
+    <p>Time: <strong>3:00 PM onwards</strong></p>
+    <div id="countdown">
+      ⏳ <span id="days"></span> days,
+      <span id="hours"></span> hrs,
+      <span id="minutes"></span> min,
+      <span id="seconds"></span> sec to go!
+    </div><br>
+    <a href="rsvp.html" class="rsvp-button">RSVP Now</a>
   </section>
 
   <footer>
     <p>With love, Victoria & Rahul</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    const weddingDate = new Date("June 21, 2025 15:00:00").getTime();
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }, 1000);
+  </script>
 </body>
 </html>
