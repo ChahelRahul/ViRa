@@ -10,6 +10,11 @@
       background-color: #fff9f9;
       text-align: center;
       padding: 2rem;
+      margin: 0;
+    }
+
+    h1 {
+      color: #b71c1c;
     }
 
     .gallery {
@@ -27,13 +32,41 @@
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
 
-    h1 {
+    .error-message {
+      color: red;
+      margin-top: 2rem;
+    }
+
+    .navbar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      background-color: #fce4ec;
+      padding: 1rem;
+    }
+
+    .navbar a {
+      text-decoration: none;
       color: #b71c1c;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: #f8bbd0;
     }
   </style>
 </head>
 <body>
 
+  <!-- Navbar -->
   <div id="nav-placeholder"></div>
   <script>
     fetch('navbar.html')
@@ -47,22 +80,35 @@
   <p>Updated automatically as we add new photos 📷</p>
 
   <div class="gallery" id="gallery"></div>
+  <div id="error" class="error-message"></div>
 
   <script>
     fetch('https://script.google.com/macros/s/AKfycbxH4ON35WXKEiZP-UsAqFUdleGQu_opGamBhaDmDfxH-8nMlrephJGYoYHB3EVoTVsS/exec')
-      .then(res => res.json())
-      .then(images => {
-        const container = document.getElementById('gallery');
-        images.forEach(img => {
-          const image = document.createElement('img');
-          image.src = img.url;
-          image.alt = img.name;
-          container.appendChild(image);
-        });
+      .then(response => response.text())
+      .then(text => {
+        try {
+          const images = JSON.parse(text);
+          const container = document.getElementById('gallery');
+
+          if (images.length === 0) {
+            document.getElementById('error').textContent = "No images found in the gallery yet.";
+            return;
+          }
+
+          images.forEach(img => {
+            const image = document.createElement('img');
+            image.src = img.url;
+            image.alt = img.name;
+            container.appendChild(image);
+          });
+        } catch (err) {
+          console.error("Failed to parse JSON:", err);
+          document.getElementById('error').textContent = "Error displaying the gallery.";
+        }
       })
       .catch(err => {
         console.error("Failed to load gallery:", err);
-        document.getElementById('gallery').innerHTML = "<p>Unable to load images right now.</p>";
+        document.getElementById('error').textContent = "Unable to load gallery at this time.";
       });
   </script>
 </body>
