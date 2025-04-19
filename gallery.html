@@ -83,28 +83,25 @@
   <div id="error" class="error-message"></div>
 
   <script>
-    fetch('https://script.google.com/macros/s/AKfycbxH4ON35WXKEiZP-UsAqFUdleGQu_opGamBhaDmDfxH-8nMlrephJGYoYHB3EVoTVsS/exec')
-      .then(response => response.text())
-      .then(text => {
-        try {
-          const images = JSON.parse(text);
-          const container = document.getElementById('gallery');
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxH4ON35WXKEiZP-UsAqFUdleGQu_opGamBhaDmDfxH-8nMlrephJGYoYHB3EVoTVsS/exec';
+    const proxiedURL = 'https://corsproxy.io/?' + encodeURIComponent(scriptURL);
 
-          if (images.length === 0) {
-            document.getElementById('error').textContent = "No images found in the gallery yet.";
-            return;
-          }
+    fetch(proxiedURL)
+      .then(response => response.json())
+      .then(images => {
+        const container = document.getElementById('gallery');
 
-          images.forEach(img => {
-            const image = document.createElement('img');
-            image.src = img.url;
-            image.alt = img.name;
-            container.appendChild(image);
-          });
-        } catch (err) {
-          console.error("Failed to parse JSON:", err);
-          document.getElementById('error').textContent = "Error displaying the gallery.";
+        if (images.length === 0) {
+          document.getElementById('error').textContent = "No images found in the gallery yet.";
+          return;
         }
+
+        images.forEach(img => {
+          const image = document.createElement('img');
+          image.src = img.url;
+          image.alt = img.name;
+          container.appendChild(image);
+        });
       })
       .catch(err => {
         console.error("Failed to load gallery:", err);
