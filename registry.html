@@ -1,1 +1,140 @@
-<h1>Registry Page</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registry | Victoria & Rahul</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #fff9f9;
+      color: #3e3e3e;
+      text-align: center;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #b71c1c;
+    }
+
+    .registry {
+      display: grid;
+      gap: 2rem;
+      max-width: 900px;
+      margin: 3rem auto;
+    }
+
+    .gift-card {
+      background-color: #ffffff;
+      padding: 1.5rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .gift-card h2 {
+      color: #b71c1c;
+    }
+
+    .gift-card p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .gift-button {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      background-color: #b71c1c;
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .gift-button:hover {
+      background-color: #a11919;
+    }
+
+    .guest-message {
+      margin-top: 3rem;
+    }
+
+    textarea {
+      width: 100%;
+      max-width: 600px;
+      padding: 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+
+    .navbar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      background-color: #fce4ec;
+      padding: 1rem;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #b71c1c;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: #f8bbd0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div id="nav-placeholder"></div>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <h1>Wedding Registry</h1>
+  <p>We’re so grateful for your presence. If you'd like to send a gift, here are a few things we’d love for our journey together 💕</p>
+
+  <section class="registry">
+    <div class="gift-card">
+      <h2>🍷 Dinner for Two</h2>
+      <p>Help us enjoy a romantic dinner during our honeymoon in Santorini.</p>
+      <a href="https://buy.stripe.com/test_4gw7vPgJe3VZ3kofZ0" class="gift-button" target="_blank">Gift £60 with Google Pay</a>
+    </div>
+
+    <div class="gift-card">
+      <h2>🌊 Private Boat Ride</h2>
+      <p>Treat us to a magical boat ride across the Caldera.</p>
+      <a href="https://buy.stripe.com/test_6oE7vP0yS4Hlcqk6op" class="gift-button" target="_blank">Gift £100</a>
+    </div>
+
+    <div class="gift-card">
+      <h2>✈️ Honeymoon Flight Fund</h2>
+      <p>Help cover our travel to our dream destination.</p>
+      <a href="https://buy.stripe.com/test_28o7vP0yS0HlcqkcMQ" class="gift-button" target="_blank">Gift £200</a>
+    </div>
+  </section>
+
+  <section class="guest-message">
+    <h2>Leave us a message 💌</h2>
+    <textarea placeholder="Your wishes, thoughts, or inside jokes here..." rows="5"></textarea>
+  </section>
+
+</body>
+</html>
