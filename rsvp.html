@@ -2,27 +2,127 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>RSVP</title>
+  <title>RSVP | Victoria & Rahul</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #fff9f9;
+      color: #333;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      color: #b71c1c;
+      font-size: 2.5rem;
+    }
+
+    form {
+      max-width: 500px;
+      margin: 2rem auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    label {
+      display: block;
+      text-align: left;
+      margin: 1rem 0 0.5rem;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    button {
+      background-color: #b71c1c;
+      color: white;
+      padding: 0.75rem 2rem;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #a11919;
+    }
+
+    #confirmation {
+      margin-top: 1.5rem;
+      color: green;
+      font-weight: bold;
+      display: none;
+    }
+
+    /* Honeypot - hidden from users but visible to bots */
+    .honeypot {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      form {
+        padding: 1.5rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
+
   <h1>RSVP to Our Wedding</h1>
+
   <form id="rsvp-form">
-    <label>Name: <input type="text" name="name" required></label><br>
-    <label>Email: <input type="email" name="email" required></label><br>
+    <label>Name:
+      <input type="text" name="name" required>
+    </label>
+
+    <label>Email:
+      <input type="email" name="email" required>
+    </label>
+
     <label>Will you attend?
       <select name="attending" required>
+        <option value="">--Select--</option>
         <option value="Yes">Yes</option>
         <option value="No">No</option>
         <option value="Maybe">Maybe</option>
       </select>
-    </label><br>
-    <label>Number of Guests: <input type="number" name="guests" min="0" max="10"></label><br>
-    <label>Message: <textarea name="message"></textarea></label><br>
+    </label>
+
+    <label>Number of Guests:
+      <input type="number" name="guests" min="0" max="10" required>
+    </label>
+
+    <label>Message (Optional):
+      <textarea name="message" rows="4"></textarea>
+    </label>
+
+    <!-- Honeypot field -->
+    <div class="honeypot">
+      <label>Leave this blank:
+        <input type="text" name="honeypot">
+      </label>
+    </div>
+
     <button type="submit">Send RSVP</button>
   </form>
 
-  <p id="confirmation" style="display: none;">Thanks for your RSVP!</p>
+  <p id="confirmation">🎉 Thanks for your RSVP! We can't wait to celebrate with you.</p>
 
   <script>
     const form = document.getElementById("rsvp-form");
@@ -34,9 +134,15 @@
       const formData = new FormData(form);
       const json = Object.fromEntries(formData.entries());
 
+      // Spam check: if honeypot is filled, block submission
+      if (json.honeypot) return;
+
+      // Remove honeypot before sending
+      delete json.honeypot;
+
       try {
         const res = await fetch("https://script.google.com/macros/s/AKfycbyzHQFnIgkdHc57QVQfBFkZvYZ5lZ-hizuWOfnu6nLrgSFR5LsTkV98vgNXHvjwDZgf/exec", {
-          method: "POST",
+            method: "POST",
           body: JSON.stringify(json),
           headers: { "Content-Type": "application/json" }
         });
@@ -49,7 +155,7 @@
           alert("Submission failed. Try again.");
         }
       } catch (err) {
-        alert("Error submitting RSVP.");
+        alert("Error submitting RSVP. Please try again later.");
       }
     });
   </script>
