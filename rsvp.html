@@ -1,2 +1,57 @@
-<iframe src="https://docs.google.com/forms/d/e/your-form-id/viewform?embedded=true"
-width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RSVP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>RSVP to Our Wedding</h1>
+  <form id="rsvp-form">
+    <label>Name: <input type="text" name="name" required></label><br>
+    <label>Email: <input type="email" name="email" required></label><br>
+    <label>Will you attend?
+      <select name="attending" required>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+        <option value="Maybe">Maybe</option>
+      </select>
+    </label><br>
+    <label>Number of Guests: <input type="number" name="guests" min="0" max="10"></label><br>
+    <label>Message: <textarea name="message"></textarea></label><br>
+    <button type="submit">Send RSVP</button>
+  </form>
+
+  <p id="confirmation" style="display: none;">Thanks for your RSVP!</p>
+
+  <script>
+    const form = document.getElementById("rsvp-form");
+    const confirmation = document.getElementById("confirmation");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+      const json = Object.fromEntries(formData.entries());
+
+      try {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbyzHQFnIgkdHc57QVQfBFkZvYZ5lZ-hizuWOfnu6nLrgSFR5LsTkV98vgNXHvjwDZgf/exec", {
+          method: "POST",
+          body: JSON.stringify(json),
+          headers: { "Content-Type": "application/json" }
+        });
+
+        const result = await res.json();
+        if (result.result === "Success") {
+          form.reset();
+          confirmation.style.display = "block";
+        } else {
+          alert("Submission failed. Try again.");
+        }
+      } catch (err) {
+        alert("Error submitting RSVP.");
+      }
+    });
+  </script>
+</body>
+</html>
