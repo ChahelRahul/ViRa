@@ -66,7 +66,6 @@
       display: none;
     }
 
-    /* Honeypot - hidden from users but visible to bots */
     .honeypot {
       display: none;
     }
@@ -80,9 +79,45 @@
         font-size: 2rem;
       }
     }
+
+    .navbar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      background-color: #fce4ec;
+      padding: 1rem;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #b71c1c;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: #f8bbd0;
+    }
   </style>
 </head>
 <body>
+
+  <!-- Navbar -->
+  <div id="nav-placeholder"></div>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+  </script>
 
   <h1>RSVP to Our Wedding</h1>
 
@@ -134,15 +169,12 @@
       const formData = new FormData(form);
       const json = Object.fromEntries(formData.entries());
 
-      // Spam check: if honeypot is filled, block submission
-      if (json.honeypot) return;
-
-      // Remove honeypot before sending
+      if (json.honeypot) return; // Spam detected
       delete json.honeypot;
 
       try {
         const res = await fetch("https://script.google.com/macros/s/AKfycbyzHQFnIgkdHc57QVQfBFkZvYZ5lZ-hizuWOfnu6nLrgSFR5LsTkV98vgNXHvjwDZgf/exec", {
-            method: "POST",
+          method: "POST",
           body: JSON.stringify(json),
           headers: { "Content-Type": "application/json" }
         });
@@ -152,7 +184,7 @@
           form.reset();
           confirmation.style.display = "block";
         } else {
-          alert("Submission failed. Try again.");
+          alert("Submission failed. Please try again.");
         }
       } catch (err) {
         alert("Error submitting RSVP. Please try again later.");
