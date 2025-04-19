@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: #fffaf5;
+  color: #3e3e3e;
+  text-align: center;
+}
+header {
+  background: #f9e4e4;
+  padding: 2rem;
+}
+.subtitle {
+  font-size: 1.2rem;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+.navbar {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  background-color: #fce4ec;
+  padding: 1rem 0;
+  list-style: none;
+}
+.navbar li a {
+  text-decoration: none;
+  color: #b71c1c;
+  font-weight: bold;
+}
+.gallery {
+  position: relative;
+  max-width: 600px;
+  margin: auto;
+}
+.gallery img {
+  width: 100%;
+  border-radius: 8px;
+}
+.gallery button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.8);
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.gallery button:first-of-type { left: 10px; }
+.gallery button:last-of-type { right: 10px; }
