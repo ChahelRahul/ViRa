@@ -17,24 +17,14 @@
       color: #b71c1c;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 1rem;
-      max-width: 1000px;
-      margin: 2rem auto;
-    }
-
-    .gallery img {
+    iframe {
       width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    .error-message {
-      color: red;
+      max-width: 1100px;
+      height: 1000px;
+      border: none;
+      border-radius: 10px;
       margin-top: 2rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
     .navbar ul {
@@ -79,34 +69,11 @@
   <h1>Our Gallery</h1>
   <p>Updated automatically as we add new photos 📷</p>
 
-  <div class="gallery" id="gallery"></div>
-  <div id="error" class="error-message"></div>
+  <!-- ✅ Embed your dynamic Google Apps Script gallery here -->
+  <iframe 
+    src="https://script.google.com/macros/s/AKfycbzqJ6rVJVXnREVPX69visb9YOzRf_X4jtK_gZr8xa93BxtJyIWS3UvxGiEzCVXu6Bfd/exec" 
+    allowfullscreen>
+  </iframe>
 
-  <script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxH4ON35WXKEiZP-UsAqFUdleGQu_opGamBhaDmDfxH-8nMlrephJGYoYHB3EVoTVsS/exec';
-    const proxiedURL = 'https://corsproxy.io/?' + encodeURIComponent(scriptURL);
-
-    fetch(proxiedURL)
-      .then(response => response.json())
-      .then(images => {
-        const container = document.getElementById('gallery');
-
-        if (images.length === 0) {
-          document.getElementById('error').textContent = "No images found in the gallery yet.";
-          return;
-        }
-
-        images.forEach(img => {
-          const image = document.createElement('img');
-          image.src = img.url;
-          image.alt = img.name;
-          container.appendChild(image);
-        });
-      })
-      .catch(err => {
-        console.error("Failed to load gallery:", err);
-        document.getElementById('error').textContent = "Unable to load gallery at this time.";
-      });
-  </script>
 </body>
 </html>
