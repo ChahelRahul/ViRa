@@ -1,7 +1,48 @@
-<div class="gallery">
-  <img class="slide" src="assets/images/photo1.jpg" style="display: block;">
-  <img class="slide" src="assets/images/photo2.jpg">
-  <img class="slide" src="assets/images/photo3.jpg">
-  <button onclick="plusSlides(-1)">❮</button>
-  <button onclick="plusSlides(1)">❯</button>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gallery | Victoria & Rahul</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #fff9f9;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    iframe {
+      width: 100%;
+      height: 800px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #b71c1c;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <h1>Our Gallery</h1>
+  <p>Captured memories leading up to our big day ❤️</p>
+
+  <iframe 
+    src="https://photos.app.goo.gl/A3ih5Qj1SezjZY759/embed" 
+    allowfullscreen>
+  </iframe>
+
+</body>
+</html>
