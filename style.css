@@ -45,6 +45,9 @@ header {
   font-size: 2rem;
   cursor: pointer;
 }
+h1, h2, h3 {
+  color: #B27409;
+}
 .gallery button:first-of-type { left: 10px; }
 .gallery button:last-of-type { right: 10px; }
 .navbar {
@@ -66,14 +69,16 @@ header {
 .navbar a {
   font-family: 'Mirza', cursive;
   text-transform: uppercase;
-  color: #000000BF;
+  color: #B27409;
   font-size: 1.1rem;
   text-decoration: none;
   padding: 0.5rem 1rem;
   transition: background-color 0.3s;
 }
 
+
 .navbar a:hover {
   background-color: rgba(255, 255, 255, 0.1);
-  border-radius: 6px;
+  color: #B27409;
 }
+
