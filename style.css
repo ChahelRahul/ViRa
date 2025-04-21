@@ -2,8 +2,9 @@ body {
   margin: 0;
   font-family: 'Georgia', serif;
   background: #fffaf5;
-  color: #3e3e3e;
+  color: white;
   text-align: center;
+  
 }
 header {
   background: #f9e4e4;
