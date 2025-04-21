@@ -1,3 +1,204 @@
-<h1>Venue Page</h1>
-<iframe src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Lakeview+Gardens,Edinburgh"
-width="100%" height="450" style="border:0;" allowfullscreen loading="lazy"></iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Travel & Logistics | Victoria & Rahul</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #fff9f9;
+      color: #3a3a3a;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1, h2, h3 {
+      color: #b71c1c;
+    }
+
+    .section {
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .block {
+      margin-bottom: 2.5rem;
+    }
+
+    .location-box {
+      background-color: #fce4ec;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      margin: 1.5rem 0;
+    }
+
+    a {
+      color: #b71c1c;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    ul {
+      padding-left: 1.2rem;
+      text-align: left;
+    }
+
+    .navbar ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      background-color: #fce4ec;
+      padding: 1rem;
+    }
+
+    .navbar a {
+      text-decoration: none;
+      color: #b71c1c;
+      font-weight: bold;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      transition: background-color 0.3s;
+    }
+
+    .navbar a:hover {
+      background-color: #f8bbd0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div id="nav-placeholder"></div>
+  <script>
+    fetch('navbar.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('nav-placeholder').innerHTML = data;
+      });
+  </script>
+
+  <div class="section">
+    <h1>Travel & Logistics</h1>
+
+    <p>
+      Welcome to our wedding travel guide! Whether you're joining us in Copenhagen, Denmark for our civil ceremony or in Sonipat, India for our wedding celebration, this is the place to find all the essential info to help you plan your trip with ease.
+    </p>
+
+    <div class="block">
+      <h2>Overview</h2>
+      <p>
+        We would love to have you join us for our celebrations! Having your support and love accompany us through these moments is incredibly special to us.
+      </p>
+      <p>
+        We’re celebrating our marriage in two parts:
+      </p>
+      <ul>
+        <li>A simple civil ceremony in Copenhagen, Denmark — where all are welcome!</li>
+        <li>A big celebration in Sonipat, India — Rahul’s hometown — with both of our families, friends, and loved ones coming together for a joyful and memory-filled gathering.</li>
+      </ul>
+      <p>
+        Whether you're attending one or both events, we’ve put together some helpful information to make your travels and planning as smooth as possible.
+        We love having you as a part of our journey!
+      </p>
+    </div>
+
+    <div class="block">
+      <h2>Copenhagen, Denmark – Civil Ceremony</h2>
+      <div class="location-box">
+        <h3>Date & Location</h3>
+        <p>
+          <strong>Date:</strong> 10 October 2025<br>
+          <strong>Venue:</strong> TBC - Copenhagen Town Hall<br>
+          <strong>Address:</strong> Rådhuspladsen 1, 1553 København, Denmark
+        </p>
+      </div>
+
+      <h3>Getting There</h3>
+      <ul>
+        <li>Fly into <strong>Copenhagen Airport (CPH)</strong> from major cities in the US, UK, or India.</li>
+        <li>Search flights on <a href="https://www.skyscanner.net/" target="_blank">Skyscanner</a>.</li>
+        <li>From airport to city: <br>
+          Train/Metro (15 mins) or Taxi (20–30 mins).
+        </li>
+      </ul>
+
+      <h3>Accommodation</h3>
+      <ul>
+        <li>We'll be staying at <strong>Axel Guldsmeden</strong>.</li>
+        <li>Other great hotels nearby:
+          <ul>
+            <li>Scandic Palace Hotel (right next to City Hall)</li>
+            <li>Hotel SP34</li>
+            <li>Wakeup Copenhagen</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Getting Around</h3>
+      <ul>
+        <li>Excellent public transport (Metro, buses)</li>
+        <li>Walkable and bike-friendly city</li>
+        <li>Recommended: Download the <strong>DOT Tickets</strong> app</li>
+      </ul>
+
+      <h3>Tips</h3>
+      <ul>
+        <li>Denmark is in the Schengen Area – some guests may need a visa</li>
+        <li>Weather: October averages 6–14°C (42–57°F)</li>
+        <li>Language: Most Danes speak English fluently</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h2>Sonipat, India – Wedding Celebration</h2>
+      <div class="location-box">
+        <h3>Date & Location</h3>
+        <p>
+          <strong>Date:</strong> To be confirmed by Summer 2025<br>
+          <strong>Venue:</strong> TBC<br>
+          <strong>Address:</strong> TBC
+        </p>
+      </div>
+
+      <h3>Getting There</h3>
+      <ul>
+        <li>Fly into <strong>Delhi (DEL)</strong> – Indira Gandhi International Airport</li>
+        <li>Sonipat is approx. 1.5–2 hours by car from Delhi</li>
+        <li>We’ll help organise transport from Delhi if needed</li>
+      </ul>
+
+      <h3>Accommodation</h3>
+      <p>TBC – details will be shared as soon as they’re available!</p>
+
+      <h3>Tips</h3>
+      <ul>
+        <li>Most non-Indian passport holders need a visa</li>
+        <li>Apply for E-Tourist Visa (approx. $25): <a href="https://indianvisaonline.gov.in/evisa/Registration" target="_blank">Apply here</a></li>
+        <li>Pack for both formal events and casual days</li>
+        <li>Use Indian SIM cards or enable international roaming — we can help!</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h3>Still have questions?</h3>
+      <p>
+        Message us on WhatsApp!<br>
+        Victoria: <a href="https://wa.me/447308785837">+44 7308 785837</a><br>
+        Rahul: <a href="https://wa.me/447824049629">+44 7824 049629</a>
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>
