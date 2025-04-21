@@ -63,7 +63,15 @@ h1 {
     a:hover {
       text-decoration: underline;
     }
-
+    .content-wrapper {
+      background-color: rgba(0, 0, 0, 0.5);
+      /* 50% transparent black */
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 2rem auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
     .navbar ul {
       list-style: none;
       padding: 0;
@@ -103,7 +111,7 @@ h1 {
         document.getElementById('nav-placeholder').innerHTML = data;
       });
   </script>
-
+<div class="content-wrapper">
   <h1>Gifts & Contributions</h1>
 
   <div class="section">
@@ -145,6 +153,6 @@ h1 {
       UPI ID: <code>9017777721@ybl</code></p>
     </div>
   </div>
-
+</div>
 </body>
 </html>

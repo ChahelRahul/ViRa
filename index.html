@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Victoria & Rahul's Wedding</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cardo&family=Mirza&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cardo&family=Mirza&family=Great+Vibes&display=swap"
+    rel="stylesheet">
 
   <style>
     body {
@@ -28,7 +30,8 @@
       text-align: center;
     }
 
-    h2, h3 {
+    h2,
+    h3 {
       font-family: 'Mirza', cursive;
       color: #B27409;
       text-transform: uppercase;
@@ -41,14 +44,17 @@
       line-height: 1.6;
       margin-bottom: 1rem;
     }
+
     .content-wrapper {
-  background-color: rgba(0, 0, 0, 0.5); /* 50% transparent black */
-  border-radius: 12px;
-  padding: 2rem;
-  max-width: 1000px;
-  margin: 2rem auto;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-}
+      background-color: rgba(0, 0, 0, 0.5);
+      /* 50% transparent black */
+      border-radius: 12px;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: 2rem auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
     header {
       text-align: center;
       padding: 3rem 1rem 1rem;
@@ -85,7 +91,7 @@
       display: inline-block;
       padding: 1rem 2rem;
       border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
       font-size: 1.2rem;
       margin: 1rem auto;
       color: white;
@@ -148,6 +154,7 @@
     }
   </style>
 </head>
+
 <body>
 
   <!-- Navbar -->
@@ -161,34 +168,34 @@
   </script>
   <div class="content-wrapper">
     <h1>Victoria & Rahul</h1>
-  <div class="content">
-    <p>We’re getting married and we can’t wait to celebrate with you!</p>
+    <div class="content">
+      <p>We’re getting married and we can’t wait to celebrate with you!</p>
 
-    <p>We're marking this new chapter of our lives with two special events:</p>
-    <ul style="text-align:left; max-width:600px; margin: 0 auto;">
-      <li><strong>A simple civil ceremony</strong> in Copenhagen, Denmark</li>
-      <li><strong>A joyful celebration</strong> with family and friends in Sonipat, India</li>
-    </ul>
+      <p>We're marking this new chapter of our lives with two special events:</p>
+      <ul style="text-align:left; max-width:600px; margin: 0 auto;">
+        <li><strong>A simple civil ceremony</strong> in Copenhagen, Denmark</li>
+        <li><strong>A joyful celebration</strong> with family and friends in Sonipat, India</li>
+      </ul>
 
-    <p>
-      Whether you're joining us in Denmark, India, or from afar, your support and love mean the world to us.
-      All the travel details, logistics, and helpful info can be found throughout the site.
-    </p>
-    <p>Get ready for love, laughter, and lots of memories. <br><strong>#ChahelYeah</strong></p>
-<br>
+      <p>
+        Whether you're joining us in Denmark, India, or from afar, your support and love mean the world to us.
+        All the travel details, logistics, and helpful info can be found throughout the site.
+      </p>
+      <p>Get ready for love, laughter, and lots of memories. <br><strong>#ChahelYeah</strong></p>
+      <br>
 
-    <h2>Countdown to Copenhagen</h2>
-    <div class="countdown" id="countdownCopenhagen"></div>
+      <h2>Countdown to Copenhagen</h2>
+      <div class="countdown" id="countdownCopenhagen"></div>
 
-    <h2>Countdown to Sonipat</h2>
-    <div class="countdown" id="countdownSonipat">Date to be confirmed</div>
-    <p>Thank you for being a part of this special journey with us!</p>
+      <h2>Countdown to Sonipat</h2>
+      <div class="countdown" id="countdownSonipat">Date to be confirmed</div>
+      <p>Thank you for being a part of this special journey with us!</p>
+    </div>
+
+    <footer>
+      <p>With love, Victoria & Rahul</p>
+    </footer>
   </div>
-
-  <footer>
-    <p>With love, Victoria & Rahul</p>
-  </footer>
-</div>
   <script>
     const countdown = (id, dateString) => {
       const targetDate = new Date(dateString).getTime();
@@ -218,4 +225,5 @@
     countdown("countdownCopenhagen", "October 10, 2025 12:00:00");
   </script>
 </body>
+
 </html>
