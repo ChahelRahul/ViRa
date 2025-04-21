@@ -89,25 +89,27 @@
   <div class="error" id="error"></div>
 
   <script>
-    fetch("https://wedding-gallery-161577458810.europe-west1.run.app/photos")
-      .then(res => res.json())
-      .then(images => {
-        const container = document.getElementById("gallery");
-        if (!images || images.length === 0) {
-          document.getElementById("error").textContent = "No photos found.";
-          return;
-        }
-        images.forEach(img => {
-          const image = document.createElement("img");
-          image.src = img.url;
-          image.alt = img.filename;
-          container.appendChild(image);
-        });
-      })
-      .catch(err => {
-        document.getElementById("error").textContent = "Failed to load gallery.";
-        console.error("Gallery error:", err);
-      });
+   fetch("https://wedding-gallery-161577458810.europe-west1.run.app/photos")
+  .then(res => res.json())
+  .then(images => {
+    const container = document.getElementById("gallery");
+    if (!Array.isArray(images)) {
+      document.getElementById("error").textContent = "Gallery is updating. Please check back soon!";
+      console.error("Unexpected response:", images);
+      return;
+    }
+    images.forEach(img => {
+      const image = document.createElement("img");
+      image.src = img.url;
+      image.alt = img.filename;
+      container.appendChild(image);
+    });
+  })
+  .catch(err => {
+    document.getElementById("error").textContent = "Failed to load gallery.";
+    console.error("Gallery error:", err);
+  });
+
   </script>
 </body>
 </html>
