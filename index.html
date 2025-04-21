@@ -4,57 +4,57 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Victoria & Rahul's Wedding</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Mirza&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mirza&family=Cardo&display=swap" rel="stylesheet">
   <style>
     body {
-  background: url('./assets/images/Home.png') no-repeat center center fixed;
-  background-size: cover;
-  background-color: rgba(255, 255, 255, 0.7); 
-  backdrop-filter: blur(2px);
-  font-family: 'Georgia', serif;
-  margin: 0;
-  padding: 2rem;
-}
+      background: url('./assets/images/Home.png') no-repeat center center fixed;
+      background-size: cover;
+      background-color: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(2px);
+      font-family: 'Cardo', serif;
+      margin: 0;
+      padding: 2rem;
+    }
 
+    h1, h2, h3 {
+      font-family: 'Mirza', cursive;
+      color: #B27409;
+      text-transform: uppercase;
+      margin: 0;
+    }
+
+    p {
+      font-family: 'Cardo', serif;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
 
     header {
       background-color: #000000BF;
       padding: 2rem 1rem;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      color: #b71c1c;
+      text-align: center;
     }
 
     .subtitle {
       font-size: 1.2rem;
       font-style: italic;
-      color: #7b1c1c;
+      color: #B27409;
       margin-top: 0.5rem;
     }
 
-    .hero img {
-      width: 100%;
-      max-height: 500px;
-      object-fit: cover;
-    }
-
-    .details {
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
       padding: 2rem;
-    }
-
-    .details h2 {
-      color: #b71c1c;
+      text-align: center;
     }
 
     .rsvp-button {
       display: inline-block;
-      margin-top: 1rem;
+      margin: 2rem 0;
       padding: 0.75rem 1.5rem;
-      background-color: #b71c1c;
+      background-color: #B27409;
       color: white;
       border-radius: 8px;
       text-decoration: none;
@@ -62,20 +62,22 @@
       font-size: 1.1rem;
     }
 
-    #countdown {
-      margin: 2rem auto;
-      font-size: 1.5rem;
+    .countdown {
       background-color: #fff;
       display: inline-block;
       padding: 1rem 2rem;
       border-radius: 10px;
       box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      font-size: 1.2rem;
+      margin: 1rem auto;
     }
 
     footer {
       background-color: #000000BF;
       padding: 1rem;
       font-size: 0.9rem;
+      color: white;
+      text-align: center;
     }
 
     .navbar ul {
@@ -86,14 +88,16 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 1rem;
-      background-color: #000000BF;
+      background-color: #000000;
       padding: 1rem;
+      position: relative;
     }
 
     .navbar a {
+      font-family: 'Mirza', cursive;
+      text-transform: uppercase;
       text-decoration: none;
-      color: #b71c1c;
-      font-weight: bold;
+      color: #B27409;
       font-size: 1rem;
       padding: 0.5rem 1rem;
       border-radius: 6px;
@@ -101,7 +105,15 @@
     }
 
     .navbar a:hover {
-      background-color: #f8bbd0;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .navbar::after {
+      content: "";
+      display: block;
+      height: 60px;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"><path fill="%23000" d="M0,0 C360,80 1080,0 1440,100 L1440,0 L0,0 Z"></path></svg>') no-repeat bottom center;
+      background-size: cover;
     }
 
     @media (max-width: 600px) {
@@ -109,8 +121,8 @@
         font-size: 2rem;
       }
 
-      #countdown {
-        font-size: 1.1rem;
+      .countdown {
+        font-size: 1rem;
         padding: 1rem;
       }
     }
@@ -133,41 +145,67 @@
     <p class="subtitle">We're getting married!</p>
   </header>
 
-  <section class="details">
-    <h2>Wedding Details</h2>
-    <p>Date: <strong>June 21, 2025</strong></p>
-    <p>Venue: <strong>Lakeview Gardens, Edinburgh</strong></p>
-    <p>Time: <strong>3:00 PM onwards</strong></p>
-    <div id="countdown">
-      ⏳ <span id="days"></span> days,
-      <span id="hours"></span> hrs,
-      <span id="minutes"></span> min,
-      <span id="seconds"></span> sec to go!
-    </div><br>
+  <div class="content">
+    <p>
+      We’re getting married — and we can’t wait to celebrate with you!
+    </p>
+    <p>
+      We're marking this new chapter of our lives with two special events:
+    </p>
+    <ul style="text-align:left; max-width:600px; margin: 0 auto;">
+      <li><strong>A simple civil ceremony</strong> in Copenhagen, Denmark</li>
+      <li><strong>A joyful celebration</strong> with family and friends in Sonipat, India</li>
+    </ul>
+    <p>
+      Whether you're joining us in Denmark, India, or from afar, your support and love mean the world to us.
+      All the travel details, logistics, and helpful info can be found throughout the site.
+    </p>
+    <p>
+      Get ready for love, laughter, and lots of memories. <br><strong>#ChahelYeah</strong>
+    </p>
+
+    <h2>Countdown to Copenhagen</h2>
+    <div class="countdown" id="countdownCopenhagen"></div>
+
+    <h2>Countdown to Sonipat</h2>
+    <div class="countdown" id="countdownSonipat">Date to be confirmed ✨</div>
+
     <a href="rsvp.html" class="rsvp-button">RSVP Now</a>
-  </section>
+
+    <p>Thank you for being a part of this special journey with us!</p>
+  </div>
 
   <footer>
     <p>With love, Victoria & Rahul</p>
   </footer>
 
   <script>
-    const weddingDate = new Date("June 21, 2025 15:00:00").getTime();
+    const countdown = (id, dateString) => {
+      const targetDate = new Date(dateString).getTime();
+      const el = document.getElementById(id);
 
-    setInterval(() => {
-      const now = new Date().getTime();
-      const diff = weddingDate - now;
+      const update = () => {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
 
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        if (diff <= 0) {
+          el.innerHTML = "🎉 It's happening today!";
+          return;
+        }
 
-      document.getElementById("days").textContent = days;
-      document.getElementById("hours").textContent = hours;
-      document.getElementById("minutes").textContent = minutes;
-      document.getElementById("seconds").textContent = seconds;
-    }, 1000);
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        el.innerHTML = `⏳ ${days} days, ${hours} hrs, ${minutes} min, ${seconds} sec to go!`;
+      };
+
+      update();
+      setInterval(update, 1000);
+    };
+
+    countdown("countdownCopenhagen", "October 10, 2025 12:00:00");
   </script>
 </body>
 </html>
