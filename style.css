@@ -1,33 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Cardo&family=Mirza&display=swap');
+
 body {
   margin: 0;
-  font-family: 'Georgia', serif;
+  font-family: 'Cardo', serif;
   background: #fffaf5;
   color: white;
   text-align: center;
-  
 }
-header {
-  background: #f9e4e4;
-  padding: 2rem;
+
+/* Typography */
+h1, h2, h3 {
+  color: #B27409;
+  font-family: 'Mirza', cursive;
+  text-transform: uppercase;
 }
+
 .subtitle {
   font-size: 1.2rem;
   font-style: italic;
+  color: #B27409;
   margin-top: 0.5rem;
 }
+
+header {
+  padding: 2rem;
+}
+
+/* Navbar */
 .navbar {
+  background-color: #000;
+  position: relative;
+  padding: 1rem;
+  font-family: 'Mirza', cursive;
+  text-transform: uppercase;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
   display: flex;
-  justify-content: center;
-  gap: 1rem;
-  background-color: #000000BF;
-  padding: 1rem 0;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-toggle {
+  font-size: 1.6rem;
+  color: white;
+  cursor: pointer;
+  display: none;
+}
+
+#nav-links {
   list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
 }
-.navbar li a {
-  text-decoration: none;
+
+#nav-links li a {
   color: #B27409;
-  font-weight: bold;
+  font-size: 1.1rem;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.3s;
 }
+
+#nav-links li a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #B27409;
+}
+
+/* Wave under navbar */
+.navbar::after {
+  content: "";
+  display: block;
+  height: 60px;
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100"><path fill="%23000" d="M0,0 C360,80 1080,0 1440,100 L1440,0 L0,0 Z"></path></svg>') no-repeat bottom center;
+  background-size: cover;
+  margin-top: -1px;
+  line-height: 0;
+  overflow: hidden;
+}
+
+/* Mobile collapsible menu */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  #nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    background-color: #000;
+    padding-top: 1rem;
+  }
+
+  #nav-links.show {
+    display: flex;
+  }
+
+  #nav-links li {
+    padding: 0.5rem 0;
+  }
+}
+
+/* Gallery */
 .gallery {
   position: relative;
   max-width: 600px;
@@ -41,45 +122,14 @@ header {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255,255,255,0.8);
+  background: rgba(255, 255, 255, 0.8);
   border: none;
   font-size: 2rem;
   cursor: pointer;
 }
-h1, h2, h3 {
-  color: #B27409;
+.gallery button:first-of-type {
+  left: 10px;
 }
-.gallery button:first-of-type { left: 10px; }
-.gallery button:last-of-type { right: 10px; }
-.navbar {
-  background-color: #000000BF;
-  position: relative;
-  padding: 1rem 0 2rem 0;
+.gallery button:last-of-type {
+  right: 10px;
 }
-
-.navbar ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 1.5rem;
-}
-
-.navbar a {
-  font-family: 'Mirza', cursive;
-  text-transform: uppercase;
-  color: #B27409;
-  font-size: 1.1rem;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: background-color 0.3s;
-}
-
-
-.navbar a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #B27409;
-}
-
