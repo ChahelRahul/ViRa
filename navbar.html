@@ -7,4 +7,19 @@
       <li><a href="registry.html">Gifts & Contributions</a></li>
     </ul>
   </nav>
-  
+  <!-- Navbar Placeholder -->
+<div id="nav-placeholder"></div>
+<script>
+  fetch('navbar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('nav-placeholder').innerHTML = data;
+    });
+</script>
+
+<!-- Wave -->
+<div style="margin-bottom: -1px;">
+  <svg viewBox="0 0 1440 100" style="display:block;" xmlns="http://www.w3.org/2000/svg">
+    <path fill="#000" d="M0,0 C360,80 1080,0 1440,100 L1440,0 L0,0 Z"></path>
+  </svg>
+</div>
