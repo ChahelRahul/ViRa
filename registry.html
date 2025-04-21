@@ -1,72 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Registry | Victoria & Rahul</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <title>Gifts & Contributions | Victoria & Rahul</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       font-family: 'Georgia', serif;
       background-color: #fff9f9;
-      color: #3e3e3e;
+      color: #3a3a3a;
       text-align: center;
-      margin: 0;
       padding: 2rem;
+      margin: 0;
     }
 
     h1 {
       color: #b71c1c;
-    }
-
-    .registry {
-      display: grid;
-      gap: 2rem;
-      max-width: 900px;
-      margin: 3rem auto;
-    }
-
-    .gift-card {
-      background-color: #ffffff;
-      padding: 1.5rem;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .gift-card h2 {
-      color: #b71c1c;
-    }
-
-    .gift-card p {
-      font-size: 1rem;
       margin-bottom: 1rem;
     }
 
-    .gift-button {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      background-color: #b71c1c;
-      color: #ffffff;
-      text-decoration: none;
-      border-radius: 8px;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-
-    .gift-button:hover {
-      background-color: #a11919;
-    }
-
-    .guest-message {
-      margin-top: 3rem;
-    }
-
-    textarea {
-      width: 100%;
-      max-width: 600px;
+    .section {
+      max-width: 700px;
+      margin: 0 auto;
       padding: 1rem;
-      font-size: 1rem;
-      border-radius: 8px;
-      border: 1px solid #ddd;
+      line-height: 1.7;
+    }
+
+    .divider {
+      margin: 2rem auto;
+      border-top: 1px solid #e0e0e0;
+      width: 50%;
+    }
+
+    .method {
+      margin: 1.5rem 0;
+    }
+
+    .method span.flag {
+      font-size: 1.5rem;
+      margin-right: 0.3rem;
+    }
+
+    a {
+      color: #b71c1c;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
     }
 
     .navbar ul {
@@ -108,33 +90,44 @@
       });
   </script>
 
-  <h1>Wedding Registry</h1>
-  <p>We’re so grateful for your presence. If you'd like to send a gift, here are a few things we’d love for our journey together 💕</p>
+  <h1>Gifts & Contributions</h1>
 
-  <section class="registry">
-    <div class="gift-card">
-      <h2>🍷 Dinner for Two</h2>
-      <p>Help us enjoy a romantic dinner during our honeymoon in Santorini.</p>
-      <a href="https://buy.stripe.com/test_4gw7vPgJe3VZ3kofZ0" class="gift-button" target="_blank">Gift £60 with Google Pay</a>
+  <div class="section">
+    <p>
+      The greatest gift you could give us is your love, support, and presence during this special time in our lives.
+    </p>
+    <p>
+      We know that many of our family and friends are traveling from across the world to celebrate with us, taking time off work, navigating long flights, and putting in extra effort to be there. That alone is a gift we will treasure forever.
+    </p>
+    <p>
+      If you still feel moved to give something more, we’re deeply grateful. Any contributions will go directly toward helping us build our life together.
+    </p>
+    <p><strong>Thank you from the bottom of our hearts.</strong></p>
+
+    <div class="divider"></div>
+
+    <h2>How to Contribute</h2>
+
+    <div class="method">
+      <p><span class="flag">🇺🇸</span> <strong>United States – PayPal:</strong><br>
+      <a href="https://paypal.me/ChahelYeah?country.x=GB&locale.x=en_GB" target="_blank">
+        paypal.me/ChahelYeah
+      </a></p>
     </div>
 
-    <div class="gift-card">
-      <h2>🌊 Private Boat Ride</h2>
-      <p>Treat us to a magical boat ride across the Caldera.</p>
-      <a href="https://buy.stripe.com/test_6oE7vP0yS4Hlcqk6op" class="gift-button" target="_blank">Gift £100</a>
+    <div class="method">
+      <p><span class="flag">🇬🇧</span> <strong>United Kingdom – Bank Transfer:</strong><br>
+      Name: Rahul Chahel<br>
+      Account Number: 13913258<br>
+      Sort Code: 04-00-03</p>
+      <p><a href="https://monzo.me/rahulchahel?h=hx_Obl" target="_blank">monzo.me/rahulchahel</a></p>
     </div>
 
-    <div class="gift-card">
-      <h2>✈️ Honeymoon Flight Fund</h2>
-      <p>Help cover our travel to our dream destination.</p>
-      <a href="https://buy.stripe.com/test_28o7vP0yS0HlcqkcMQ" class="gift-button" target="_blank">Gift £200</a>
+    <div class="method">
+      <p><span class="flag">🇮🇳</span> <strong>India – UPI:</strong><br>
+      UPI ID: <code>9017777721@ybl</code></p>
     </div>
-  </section>
-
-  <section class="guest-message">
-    <h2>Leave us a message 💌</h2>
-    <textarea placeholder="Your wishes, thoughts, or inside jokes here..." rows="5"></textarea>
-  </section>
+  </div>
 
 </body>
 </html>

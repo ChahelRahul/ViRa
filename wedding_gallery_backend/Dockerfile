@@ -5,6 +5,7 @@ WORKDIR /app
 
 # Copy code
 COPY . .
+COPY client_secret.json .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
