@@ -48,7 +48,7 @@ header {
 .gallery button:first-of-type { left: 10px; }
 .gallery button:last-of-type { right: 10px; }
 .navbar {
-  background-color: #000;
+  background-color: #000000BF;
   position: relative;
   padding: 1rem 0 2rem 0;
 }
@@ -66,7 +66,7 @@ header {
 .navbar a {
   font-family: 'Mirza', cursive;
   text-transform: uppercase;
-  color: white;
+  color: #000000BF;
   font-size: 1.1rem;
   text-decoration: none;
   padding: 0.5rem 1rem;
