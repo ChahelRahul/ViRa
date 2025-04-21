@@ -1,25 +1,19 @@
 <nav class="navbar">
   <div class="nav-container">
-    <span class="brand">Victoria & Rahul</span>
-    
-    <!-- Hamburger menu icon for mobile -->
-    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
-
-    <!-- Navigation links -->
+    <!-- Navigation Links -->
     <ul id="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="our-story.html">Our Story</a></li>
-      <li><a href="venue.html">Travel & Logistics</a></li>
-      <li><a href="gallery.html">Gallery</a></li>
-      <li><a href="registry.html">Gifts & Contributions</a></li>
+      <li><a href="index.html">HOME</a></li>
+      <li><a href="our-story.html">OUR STORY</a></li>
+      <li><a href="venue.html">TRAVEL & LOGISTICS</a></li>
+      <li><a href="gallery.html">GALLERY</a></li>
+      <li><a href="registry.html">GIFTS & CONTRIBUTIONS</a></li>
     </ul>
   </div>
 </nav>
 
-<!-- Optional: Script to toggle menu on mobile -->
+<!-- Toggle Script -->
 <script>
   function toggleMenu() {
-    const links = document.getElementById("nav-links");
-    links.classList.toggle("show");
+    document.getElementById("nav-links").classList.toggle("show");
   }
 </script>
