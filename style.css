@@ -3,18 +3,30 @@
 body {
   margin: 0;
   font-family: 'Cardo', serif;
-  background: #fffaf5;
+  background: url('./assets/images/Pages.png') no-repeat center center fixed;
+  background-size: cover;
+  background-color: #fffaf5; /* fallback */
   color: white;
   text-align: center;
 }
 
-/* Typography */
-h1, h2, h3 {
-  color: #B27409;
+/* Headings */
+h1 {
   font-family: 'Mirza', cursive;
+  font-size: 3rem;
+  color: #B27409;
   text-transform: uppercase;
+  margin: 0;
 }
 
+h2, h3 {
+  font-family: 'Mirza', cursive;
+  color: #B27409;
+  text-transform: uppercase;
+  margin-top: 2rem;
+}
+
+/* Subtitle */
 .subtitle {
   font-size: 1.2rem;
   font-style: italic;
@@ -22,17 +34,19 @@ h1, h2, h3 {
   margin-top: 0.5rem;
 }
 
+/* Header section */
 header {
   padding: 2rem;
 }
 
-/* Navbar */
+/* NAVBAR */
 .navbar {
   background-color: #000;
   position: relative;
   padding: 1rem;
   font-family: 'Mirza', cursive;
   text-transform: uppercase;
+  z-index: 100;
 }
 
 .nav-container {
@@ -60,6 +74,7 @@ header {
 }
 
 #nav-links li a {
+  font-family: 'Mirza', cursive;
   color: #B27409;
   font-size: 1.1rem;
   text-decoration: none;
@@ -84,7 +99,7 @@ header {
   overflow: hidden;
 }
 
-/* Mobile collapsible menu */
+/* Responsive nav for mobile */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
@@ -108,16 +123,29 @@ header {
   }
 }
 
-/* Gallery */
+/* Gallery grid */
 .gallery {
-  position: relative;
-  max-width: 600px;
-  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
+
 .gallery img {
   width: 100%;
+  height: auto;
   border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
 }
+
+.gallery img:hover {
+  transform: scale(1.03);
+}
+
+/* Carousel buttons (optional) */
 .gallery button {
   position: absolute;
   top: 50%;
@@ -132,4 +160,10 @@ header {
 }
 .gallery button:last-of-type {
   right: 10px;
+}
+
+/* Error styling */
+.error {
+  color: red;
+  margin-top: 2rem;
 }
