@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Gallery | Victoria & Rahul</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       font-family: 'Georgia', serif;
@@ -15,17 +15,6 @@
     h1 {
       color: #b71c1c;
       padding-top: 2rem;
-    }
-
-    iframe {
-      width: 100%;
-      max-width: 1100px;
-      height: 1000px;
-      border: none;
-      border-radius: 12px;
-      margin: 2rem auto;
-      display: block;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
 
     .navbar ul {
@@ -53,6 +42,32 @@
     .navbar a:hover {
       background-color: #f8bbd0;
     }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    .error {
+      color: red;
+      margin-top: 2rem;
+    }
   </style>
 </head>
 <body>
@@ -70,14 +85,29 @@
   <h1>Our Wedding Gallery</h1>
   <p>Updated automatically as we add new photos 📷</p>
 
-  <!-- ✅ Embed Google Apps Script gallery (from your deployed script URL) -->
-  <iframe
-  src="https://photos.google.com/share/AF1QipOANpbWXTDoiOeRZMQqiiXaC2ynDq-e79nssq90VcGypHapMT-FM3CkKmgfqkwP1g?key=VFVhbkEzd0toTVlNTURMY0RhM1JBVDhtWVF6UnlB"
-  width="100%"
-  height="1000"
-  frameborder="0"
-  style="border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
-</iframe>
+  <div class="gallery" id="gallery"></div>
+  <div class="error" id="error"></div>
 
+  <script>
+    fetch("https://wedding-gallery-161577458810.europe-west1.run.app/photos")
+      .then(res => res.json())
+      .then(images => {
+        const container = document.getElementById("gallery");
+        if (!images || images.length === 0) {
+          document.getElementById("error").textContent = "No photos found.";
+          return;
+        }
+        images.forEach(img => {
+          const image = document.createElement("img");
+          image.src = img.url;
+          image.alt = img.filename;
+          container.appendChild(image);
+        });
+      })
+      .catch(err => {
+        document.getElementById("error").textContent = "Failed to load gallery.";
+        console.error("Gallery error:", err);
+      });
+  </script>
 </body>
 </html>
