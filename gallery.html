@@ -7,16 +7,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Mirza&display=swap" rel="stylesheet">
   <style>
     body {
-  background: url('./assets/images/Pages.png') no-repeat center center fixed;
-  background-size: cover;
-  font-family: 'Georgia', serif;
-  margin: 0;
-  padding: 2rem;
-  background-color: #fff9f9; /* fallback if image doesn't load */
-}
+      background: url('./assets/images/Pages.png') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Georgia', serif;
+      margin: 0;
+      padding: 2rem;
+      background-color: #fff9f9;
+      color: white;
+    }
 
-
-h1 {
+    h1 {
       font-family: 'Great Vibes', cursive;
       font-size: 3rem;
       color: #B27409;
@@ -30,15 +30,16 @@ h1 {
       text-transform: uppercase;
       margin-top: 2rem;
     }
+
     .content-wrapper {
       background-color: rgba(0, 0, 0, 0.5);
-      /* 50% transparent black */
       border-radius: 12px;
       padding: 2rem;
       max-width: 1000px;
       margin: 2rem auto;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
+
     .navbar ul {
       list-style: none;
       padding: 0;
@@ -91,11 +92,25 @@ h1 {
       color: red;
       margin-top: 2rem;
     }
+
+    .loader-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 300px;
+      margin-top: 2rem;
+    }
+
+    .cat-loader {
+      width: 120px;
+      height: auto;
+      filter: drop-shadow(0 0 5px #00000088);
+    }
   </style>
 </head>
 <body>
 
-  <!-- ✅ Dynamic Navbar -->
+  <!-- Navbar placeholder -->
   <div id="nav-placeholder"></div>
   <script>
     fetch('navbar.html')
@@ -104,34 +119,49 @@ h1 {
         document.getElementById('nav-placeholder').innerHTML = data;
       });
   </script>
-<div class="content-wrapper">
-  <h1>Our Wedding Gallery</h1>
-  <div class="gallery" id="gallery"></div>
-  <div class="error" id="error"></div>
+
+  <div class="content-wrapper">
+    <h1>Our Wedding Gallery</h1>
+
+    <!-- Loader -->
+    <div id="loader" class="loader-wrapper">
+      <img src="./assets/images/cat-spinner.gif" alt="Loading..." class="cat-loader">
+    </div>
+
+    <!-- Gallery & Error -->
+    <div class="gallery" id="gallery" style="display:none;"></div>
+    <div class="error" id="error"></div>
+  </div>
 
   <script>
-   fetch("https://wedding-gallery-161577458810.europe-west1.run.app/photos")
-  .then(res => res.json())
-  .then(images => {
+    const loader = document.getElementById("loader");
     const container = document.getElementById("gallery");
-    if (!Array.isArray(images)) {
-      document.getElementById("error").textContent = "Gallery is updating. Please check back soon!";
-      console.error("Unexpected response:", images);
-      return;
-    }
-    images.forEach(img => {
-      const image = document.createElement("img");
-      image.src = img.url;
-      image.alt = img.filename;
-      container.appendChild(image);
-    });
-  })
-  .catch(err => {
-    document.getElementById("error").textContent = "Failed to load gallery.";
-    console.error("Gallery error:", err);
-  });
+    const errorBox = document.getElementById("error");
 
+    fetch("https://wedding-gallery-161577458810.europe-west1.run.app/photos")
+      .then(res => res.json())
+      .then(images => {
+        loader.style.display = "none";
+        container.style.display = "grid";
+
+        if (!Array.isArray(images)) {
+          errorBox.textContent = "Gallery is updating. Please check back soon!";
+          console.error("Unexpected response:", images);
+          return;
+        }
+
+        images.forEach(img => {
+          const image = document.createElement("img");
+          image.src = img.url;
+          image.alt = img.filename;
+          container.appendChild(image);
+        });
+      })
+      .catch(err => {
+        loader.style.display = "none";
+        errorBox.textContent = "Failed to load gallery.";
+        console.error("Gallery error:", err);
+      });
   </script>
-</div>
 </body>
 </html>
