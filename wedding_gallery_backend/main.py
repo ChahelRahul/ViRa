@@ -56,4 +56,11 @@ def albums():
 
 @app.get("/photos")
 def photos():
-    return JSONResponse(get_photos())
+    try:
+        data = get_photos()
+        if isinstance(data, dict) and "error" in data:
+            return JSONResponse(content=data, status_code=403)
+        return JSONResponse(content=data)
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=500)
+
