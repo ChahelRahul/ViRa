@@ -54,41 +54,60 @@ def list_albums():
     return res.json()
 
 def get_photos():
-    creds = load_token()
-    if not creds or not creds.token:
-        return {"error": "Not authenticated"}
+    creds = None
+    try:
+        creds = load_token()
+    except Exception as e:
+        logging.warning(f"Failed to load Google token: {e}")
 
     album_id = os.getenv("ALBUM_ID")
-    if not album_id:
-        return {"error": "Missing album ID"}
+    local_dir = os.getenv("LOCAL_PHOTO_DIR", "./local_photos")
 
-    headers = {
-        "Authorization": f"Bearer {creds.token}",
-        "Content-Type": "application/json"
-    }
-
-    url = "https://photoslibrary.googleapis.com/v1/mediaItems:search"
-    payload = {"albumId": album_id, "pageSize": 100}
-
-    all_items = []
-    while True:
-        response = requests.post(url, headers=headers, json=payload)
-        if response.status_code != 200:
-            return {"error": response.text}
-        
-        data = response.json()
-        items = data.get("mediaItems", [])
-        all_items.extend(items)
-
-        next_page_token = data.get("nextPageToken")
-        if not next_page_token:
-            break
-        payload["pageToken"] = next_page_token
-
-    return [
-        {
-            "url": item["baseUrl"] + "=w2000",
-            "filename": item.get("filename", "Photo")
+    if creds and creds.token and album_id:
+        headers = {
+            "Authorization": f"Bearer {creds.token}",
+            "Content-Type": "application/json"
         }
-        for item in all_items
-    ]
+
+        url = "https://photoslibrary.googleapis.com/v1/mediaItems:search"
+        payload = {"albumId": album_id, "pageSize": 100}
+
+        all_items = []
+        try:
+            while True:
+                response = requests.post(url, headers=headers, json=payload)
+                if response.status_code != 200:
+                    raise Exception(response.text)
+                
+                data = response.json()
+                items = data.get("mediaItems", [])
+                all_items.extend(items)
+
+                next_page_token = data.get("nextPageToken")
+                if not next_page_token:
+                    break
+                payload["pageToken"] = next_page_token
+
+            return [
+                {
+                    "url": item["baseUrl"] + "=w2000",
+                    "filename": item.get("filename", "Photo")
+                }
+                for item in all_items
+            ]
+        except Exception as e:
+            logging.warning(f"Google Photos failed, falling back to local photos: {e}")
+
+    # Fallback to local photos
+    logging.info("Loading local photos from: %s", local_dir)
+    try:
+        local_photos = []
+        for file in os.listdir(local_dir):
+            if file.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp')):
+                local_photos.append({
+                    "url": f"/static/photos/{file}",  # Assumes static hosting
+                    "filename": file
+                })
+        return local_photos
+    except Exception as e:
+        return {"error": f"Failed to load local photos: {e}"}
