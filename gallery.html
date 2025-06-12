@@ -145,8 +145,11 @@
         container.style.display = "grid";
 
         if (!Array.isArray(images)) {
-          errorBox.textContent = "Gallery is updating. Please check back soon!";
-          console.error("Unexpected response:", images);
+          const errMsg = typeof images === "object" && images?.error
+            ? `Server Error: ${images.error}`
+            : `Unexpected response: ${JSON.stringify(images)}`;
+          errorBox.textContent = errMsg;
+          console.error("Invalid gallery response:", images);
           return;
         }
 
