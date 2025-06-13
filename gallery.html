@@ -112,59 +112,41 @@
 
   <!-- Navbar placeholder -->
   <div id="nav-placeholder"></div>
-  <script>
-    fetch('navbar.html')
-      .then(res => res.text())
-      .then(data => {
-        document.getElementById('nav-placeholder').innerHTML = data;
-      });
-  </script>
+<script>
+  const loader = document.getElementById("loader");
+  const container = document.getElementById("gallery");
+  const errorBox = document.getElementById("error");
 
-  <div class="content-wrapper">
-    <h1>Our Wedding Gallery</h1>
+  function displayImages(images) {
+    container.style.display = "grid";
+    images.forEach((img, i) => {
+      const image = document.createElement("img");
+      image.src = img.url || "";
+      image.alt = img.filename || `photo_${i + 1}`;
+      image.onerror = () => image.remove(); // silently skip broken images
+      container.appendChild(image);
+    });
+  }
 
-    <!-- Loader -->
-    <div id="loader" class="loader-wrapper">
-      <img src="./assets/images/cat-spinner.gif" alt="Loading..." class="cat-loader">
-    </div>
+  fetch("https://wedding-gallery-161577458810.europe-west1.run.app/photos")
+    .then(res => res.json())
+    .then(images => {
+      loader.style.display = "none";
 
-    <!-- Gallery & Error -->
-    <div class="gallery" id="gallery" style="display:none;"></div>
-    <div class="error" id="error"></div>
-  </div>
+      if (!Array.isArray(images)) {
+        errorBox.textContent = "⚠️ Gallery response is invalid.";
+        console.error("Invalid gallery response:", images);
+        return;
+      }
 
-  <script>
-    const loader = document.getElementById("loader");
-    const container = document.getElementById("gallery");
-    const errorBox = document.getElementById("error");
+      displayImages(images);
+    })
+    .catch(err => {
+      loader.style.display = "none";
+      errorBox.textContent = "⚠️ Gallery could not be loaded.";
+      console.error("Gallery fetch error:", err);
+    });
+</script>
 
-    fetch("https://wedding-gallery-161577458810.europe-west1.run.app/photos")
-      .then(res => res.json())
-      .then(images => {
-        loader.style.display = "none";
-        container.style.display = "grid";
-
-        if (!Array.isArray(images)) {
-          const errMsg = typeof images === "object" && images?.error
-            ? `Server Error: ${images.error}`
-            : `Unexpected response: ${JSON.stringify(images)}`;
-          errorBox.textContent = errMsg;
-          console.error("Invalid gallery response:", images);
-          return;
-        }
-
-        images.forEach(img => {
-          const image = document.createElement("img");
-          image.src = img.url;
-          image.alt = img.filename;
-          container.appendChild(image);
-        });
-      })
-      .catch(err => {
-        loader.style.display = "none";
-        errorBox.textContent = "Failed to load gallery.";
-        console.error("Gallery error:", err);
-      });
-  </script>
 </body>
 </html>
