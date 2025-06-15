@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>Gallery | Victoria & Rahul</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Mirza&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Mirza&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     body {
       background: url('./assets/images/Pages.png') no-repeat center center fixed;
@@ -90,14 +90,15 @@
 
     .error {
       color: red;
-      margin-top: 2rem;
+      text-align: center;
+      margin-top: 1rem;
     }
 
     .loader-wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 300px;
+      height: 200px;
       margin-top: 2rem;
     }
 
@@ -112,41 +113,53 @@
 
   <!-- Navbar placeholder -->
   <div id="nav-placeholder"></div>
-<script>
-  const loader = document.getElementById("loader");
-  const container = document.getElementById("gallery");
-  const errorBox = document.getElementById("error");
 
-  function displayImages(images) {
-    container.style.display = "grid";
-    images.forEach((img, i) => {
-      const image = document.createElement("img");
-      image.src = img.url || "";
-      image.alt = img.filename || `photo_${i + 1}`;
-      image.onerror = () => image.remove(); // silently skip broken images
-      container.appendChild(image);
-    });
-  }
+  <h1>Our Gallery</h1>
 
-  fetch("https://wedding-gallery-161577458810.europe-west1.run.app/photos")
-    .then(res => res.json())
-    .then(images => {
-      loader.style.display = "none";
+  <div class="loader-wrapper" id="loader">
+    <img src="./assets/images/loader-cat.gif" alt="Loading..." class="cat-loader" />
+  </div>
 
-      if (!Array.isArray(images)) {
-        errorBox.textContent = "⚠️ Gallery response is invalid.";
-        console.error("Invalid gallery response:", images);
-        return;
+  <div id="error" class="error"></div>
+  <div id="gallery" class="gallery" style="display: none;"></div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const loader = document.getElementById("loader");
+      const container = document.getElementById("gallery");
+      const errorBox = document.getElementById("error");
+
+      function displayImages(images) {
+        container.style.display = "grid";
+        images.forEach((img, i) => {
+          const image = document.createElement("img");
+          image.src = img.url || "";
+          image.alt = img.filename || `photo_${i + 1}`;
+          image.onerror = () => image.remove(); // Silently skip broken images
+          container.appendChild(image);
+        });
       }
 
-      displayImages(images);
-    })
-    .catch(err => {
-      loader.style.display = "none";
-      errorBox.textContent = "⚠️ Gallery could not be loaded.";
-      console.error("Gallery fetch error:", err);
+      fetch("https://wedding-gallery-161577458810.europe-west1.run.app/photos")
+        .then(res => res.json())
+        .then(images => {
+          loader.style.display = "none";
+
+          if (!Array.isArray(images)) {
+            errorBox.textContent = "⚠️ Gallery response is invalid.";
+            console.error("Invalid gallery response:", images);
+            return;
+          }
+
+          displayImages(images);
+        })
+        .catch(err => {
+          loader.style.display = "none";
+          errorBox.textContent = "⚠️ Gallery could not be loaded.";
+          console.error("Gallery fetch error:", err);
+        });
     });
-</script>
+  </script>
 
 </body>
 </html>
