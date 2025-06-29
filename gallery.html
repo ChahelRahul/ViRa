@@ -68,10 +68,10 @@
     <img src="./assets/images/cat-spinner.gif" alt="Loading..." class="cat-loader" />
   </div>
 
-  <div class="gallery" id="gallery" style="display:none;">
+  <div class="gallery" id="gallery" style="display: none;">
     <img src="./assets/images/gallery/IMG_0006.JPG" alt="IMG_0006" loading="lazy">
     <img src="./assets/images/gallery/IMG_3556.jpg" alt="IMG_3556" loading="lazy">
-    <!-- Add more images here as needed -->
+    <!-- Add more images here manually -->
   </div>
 
   <script>
@@ -79,7 +79,7 @@
       const loader = document.getElementById("loader");
       const gallery = document.getElementById("gallery");
 
-      // Simulate loading time (e.g. 500ms)
+      // Simulate loading time before showing gallery
       setTimeout(() => {
         loader.style.display = "none";
         gallery.style.display = "grid";
