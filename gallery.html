@@ -25,14 +25,6 @@
       text-align: center;
     }
 
-    h2,
-    h3 {
-      font-family: 'Mirza', cursive;
-      color: #B27409;
-      text-transform: uppercase;
-      margin-top: 2rem;
-    }
-
     .content-wrapper {
       background-color: rgba(0, 0, 0, 0.5);
       border-radius: 12px;
@@ -70,10 +62,8 @@
     }
 
     .gallery {
-      display: none;
-      /* Initially hidden until loaded */
-      column-count: 3;
-      /* Always 3 columns desktop */
+      display: none; /* Initially hidden until loaded */
+      column-count: 3; /* 3 columns desktop */
       column-gap: 1rem;
       max-width: 1000px;
       margin: 2rem auto;
@@ -82,36 +72,30 @@
 
     .gallery img {
       width: 100%;
-      height: auto;
-      /* Retains original ratio */
-      max-height: 400px;
-      /* ✅ Limits very tall images */
-      object-fit: contain;
-      /* ✅ No cropping */
+      height: auto; /* Keeps original ratio */
+      max-height: 400px; /* Limits very tall images */
+      object-fit: contain; /* No cropping */
       margin-bottom: 1rem;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s;
-      break-inside: avoid;
-      /* ✅ Prevents images splitting across columns */
+      break-inside: avoid; /* Prevents image breaks across columns */
     }
 
     .gallery img:hover {
       transform: scale(1.03);
     }
 
-    /* ✅ Responsive adjustments */
+    /* Responsive adjustments */
     @media (max-width: 900px) {
       .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        /* 2 columns on tablet */
+        column-count: 2; /* 2 columns tablet */
       }
     }
 
     @media (max-width: 600px) {
       .gallery {
-        grid-template-columns: 1fr;
-        /* 1 column on mobile */
+        column-count: 1; /* 1 column mobile */
       }
     }
 
@@ -132,6 +116,7 @@
 </head>
 
 <body>
+  <!-- Navbar -->
   <div id="nav-placeholder"></div>
   <script>
     fetch('navbar.html')
@@ -142,6 +127,7 @@
   </script>
 
   <div class="content-wrapper">
+    <h1>Our Gallery</h1>
 
     <div class="loader-wrapper" id="loader">
       <img src="./assets/images/cat-spinner.gif" alt="Loading..." class="cat-loader" />
@@ -158,10 +144,10 @@
       <img src="./assets/images/gallery/IMG_5286.jpg" alt="IMG_5286" loading="lazy">
       <img src="./assets/images/gallery/IMG_6377.jpeg" alt="IMG_6377" loading="lazy">
       <img src="./assets/images/gallery/IMG_6380.jpeg" alt="IMG_6380" loading="lazy">
-      <img src="./assets/images/gallery/IMG_0003.JPG" alt="IMG_6380" loading="lazy">
-      <img src="./assets/images/gallery/IMG_0001.jpg" alt="IMG_6380" loading="lazy">
+      <img src="./assets/images/gallery/IMG_0003.JPG" alt="IMG_0003" loading="lazy">
+      <img src="./assets/images/gallery/IMG_0001.jpg" alt="IMG_0001" loading="lazy">
       <img src="./assets/images/gallery/IMG_4372.jpg" alt="IMG_4372" loading="lazy">
-      <!-- Add more images here -->
+      <!-- Add more images as needed -->
     </div>
   </div>
 
@@ -173,11 +159,10 @@
       // Simulate loading time before showing gallery
       setTimeout(() => {
         loader.style.display = "none";
-        gallery.style.display = "grid";
+        gallery.style.display = "block"; // Keep CSS columns layout intact
       }, 500);
     });
   </script>
-
 </body>
 
 </html>
