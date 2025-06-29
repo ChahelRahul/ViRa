@@ -72,10 +72,9 @@
     .gallery {
       display: none;
       /* Initially hidden until loaded */
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      /* 3 columns on desktop */
-      gap: 1rem;
+      column-count: 3;
+      /* Always 3 columns desktop */
+      column-gap: 1rem;
       max-width: 1000px;
       margin: 2rem auto;
       padding: 0 1rem;
@@ -83,16 +82,18 @@
 
     .gallery img {
       width: 100%;
-      /* Full width of grid cell */
       height: auto;
-      /* Keeps original ratio */
+      /* Retains original ratio */
       max-height: 400px;
-      /* Limits very tall images */
+      /* ✅ Limits very tall images */
       object-fit: contain;
-      /* Fits within max height without cropping */
+      /* ✅ No cropping */
+      margin-bottom: 1rem;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s;
+      break-inside: avoid;
+      /* ✅ Prevents images splitting across columns */
     }
 
     .gallery img:hover {
@@ -150,7 +151,6 @@
       <img src="./assets/images/gallery/IMG_0006.JPG" alt="IMG_0006" loading="lazy">
       <img src="./assets/images/gallery/IMG_001.jpeg" alt="IMG_001" loading="lazy">
       <img src="./assets/images/gallery/IMG_3556.jpg" alt="IMG_3556" loading="lazy">
-      <img src="./assets/images/gallery/IMG_4372.jpg" alt="IMG_4372" loading="lazy">
       <img src="./assets/images/gallery/IMG_4506.jpg" alt="IMG_4506" loading="lazy">
       <img src="./assets/images/gallery/IMG_4571.jpg" alt="IMG_4571" loading="lazy">
       <img src="./assets/images/gallery/IMG_4592.jpg" alt="IMG_4592" loading="lazy">
@@ -160,6 +160,7 @@
       <img src="./assets/images/gallery/IMG_6380.jpeg" alt="IMG_6380" loading="lazy">
       <img src="./assets/images/gallery/IMG_0003.JPG" alt="IMG_6380" loading="lazy">
       <img src="./assets/images/gallery/IMG_0001.jpg" alt="IMG_6380" loading="lazy">
+      <img src="./assets/images/gallery/IMG_4372.jpg" alt="IMG_4372" loading="lazy">
       <!-- Add more images here -->
     </div>
   </div>
