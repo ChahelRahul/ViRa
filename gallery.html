@@ -25,7 +25,7 @@
     }
 
     .gallery {
-      display: none; /* Initially hidden */
+      display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 1rem;
       max-width: 1100px;
@@ -68,16 +68,10 @@
     <img src="./assets/images/cat-spinner.gif" alt="Loading..." class="cat-loader" />
   </div>
 
-  <div class="gallery" id="gallery">
+  <div class="gallery" id="gallery" style="display:none;">
     <img src="./assets/images/gallery/IMG_0006.JPG" alt="IMG_0006" loading="lazy">
     <img src="./assets/images/gallery/IMG_3556.jpg" alt="IMG_3556" loading="lazy">
-    <!-- The following HEIC images won't display unless converted -->
-    <!-- <img src="./assets/images/gallery/IMG_4242.HEIC" alt="IMG_4242" loading="lazy"> 
-    <img src="./assets/images/gallery/IMG_4372.heic" alt="IMG_4372" loading="lazy"> 
-    <img src="./assets/images/gallery/IMG_4506.HEIC" alt="IMG_4506" loading="lazy"> 
-    <img src="./assets/images/gallery/IMG_4571.HEIC" alt="IMG_4571" loading="lazy"> 
-    <img src="./assets/images/gallery/IMG_4592.heic" alt="IMG_4592" loading="lazy"> 
-     <img src="./assets/images/gallery/IMG_5286.heic" alt="IMG_5286" loading="lazy"> -->
+    <!-- Add more images here as needed -->
   </div>
 
   <script>
@@ -85,32 +79,11 @@
       const loader = document.getElementById("loader");
       const gallery = document.getElementById("gallery");
 
-      // Simulate image loading
-      const images = gallery.querySelectorAll("img");
-      let loadedCount = 0;
-
-      images.forEach(img => {
-        img.onload = () => {
-          loadedCount++;
-          if (loadedCount === images.length) {
-            loader.style.display = "none";
-            gallery.style.display = "grid";
-          }
-        };
-        img.onerror = () => {
-          loadedCount++;
-          if (loadedCount === images.length) {
-            loader.style.display = "none";
-            gallery.style.display = "grid";
-          }
-        };
-      });
-
-      // If no images, hide loader immediately
-      if (images.length === 0) {
+      // Simulate loading time (e.g. 500ms)
+      setTimeout(() => {
         loader.style.display = "none";
         gallery.style.display = "grid";
-      }
+      }, 500);
     });
   </script>
 
