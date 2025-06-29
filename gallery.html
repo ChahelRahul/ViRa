@@ -24,49 +24,6 @@
       text-align: center;
     }
 
-    h2, h3 {
-      font-family: 'Mirza', cursive;
-      color: #B27409;
-      text-transform: uppercase;
-      margin-top: 2rem;
-    }
-
-    .content-wrapper {
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 12px;
-      padding: 2rem;
-      max-width: 1000px;
-      margin: 2rem auto;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .navbar ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      background-color: #000000BF;
-      padding: 1rem;
-    }
-
-    .navbar a {
-      text-decoration: none;
-      font-family: 'Mirza', cursive;
-      color: #B27409;
-      font-weight: bold;
-      font-size: 1rem;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      transition: background-color 0.3s;
-    }
-
-    .navbar a:hover {
-      background-color: #f8bbd0;
-    }
-
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -74,6 +31,7 @@
       max-width: 1100px;
       margin: 2rem auto;
       padding: 0 1rem;
+      display: none; /* Initially hidden */
     }
 
     .gallery img {
@@ -86,12 +44,6 @@
 
     .gallery img:hover {
       transform: scale(1.03);
-    }
-
-    .error {
-      color: red;
-      text-align: center;
-      margin-top: 1rem;
     }
 
     .loader-wrapper {
@@ -107,21 +59,26 @@
       height: auto;
       filter: drop-shadow(0 0 5px #00000088);
     }
+
+    .error-message {
+      text-align: center;
+      color: red;
+      font-family: 'Mirza', cursive;
+      margin-top: 1rem;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Navbar placeholder -->
-  <div id="nav-placeholder"></div>
-
   <h1>Our Gallery</h1>
 
   <div class="loader-wrapper" id="loader">
-    <img src="./assets/images/loader-cat.gif" alt="Loading..." class="cat-loader" />
+    <img src="./assets/images/cat-spinner.gif" alt="Loading..." class="cat-loader" />
   </div>
 
-  <div id="error" class="error"></div>
-  <div id="gallery" class="gallery" style="display: none;"></div>
+  <div class="error-message" id="error"></div>
+
+  <div class="gallery" id="gallery"></div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -129,33 +86,33 @@
       const container = document.getElementById("gallery");
       const errorBox = document.getElementById("error");
 
-      function displayImages(images) {
-        container.style.display = "grid";
-        images.forEach((img, i) => {
-          const image = document.createElement("img");
-          image.src = img.url || "";
-          image.alt = img.filename || `photo_${i + 1}`;
-          image.onerror = () => image.remove(); // Silently skip broken images
-          container.appendChild(image);
-        });
-      }
-
-      fetch("https://wedding-gallery-161577458810.europe-west1.run.app/photos")
-        .then(res => res.json())
+      fetch("/list_photos")
+        .then(res => {
+          if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+          return res.json();
+        })
         .then(images => {
-          loader.style.display = "none";
-
-          if (!Array.isArray(images)) {
-            errorBox.textContent = "⚠️ Gallery response is invalid.";
-            console.error("Invalid gallery response:", images);
+          if (!Array.isArray(images) || images.length === 0) {
+            errorBox.textContent = "No photos available at the moment.";
+            loader.style.display = "none";
             return;
           }
 
-          displayImages(images);
+          images.forEach((img, i) => {
+            const image = document.createElement("img");
+            image.src = img.url;
+            image.alt = img.filename;
+            image.loading = "lazy"; // Improves performance
+            image.onerror = () => image.remove(); // Skip broken images
+            container.appendChild(image);
+          });
+
+          loader.style.display = "none";
+          container.style.display = "grid";
         })
         .catch(err => {
           loader.style.display = "none";
-          errorBox.textContent = "⚠️ Gallery could not be loaded.";
+          errorBox.textContent = "⚠️ Failed to load photos.";
           console.error("Gallery fetch error:", err);
         });
     });
