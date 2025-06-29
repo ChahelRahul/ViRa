@@ -68,29 +68,52 @@
     .navbar a:hover {
       background-color: #f8bbd0;
     }
-  .gallery {
-    display: none; /* Initially hidden until loaded */
-    column-count: 3; /* Always 3 columns */
-    column-gap: 1rem;
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-  }
 
-  .gallery img {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s;
-    break-inside: avoid; /* Prevent image split across columns */
-  }
+    .gallery {
+      display: none;
+      /* Initially hidden until loaded */
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      /* 3 columns on desktop */
+      gap: 1rem;
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
 
-  .gallery img:hover {
-    transform: scale(1.03);
-  }
+    .gallery img {
+      width: 100%;
+      /* Full width of grid cell */
+      height: auto;
+      /* Keeps original ratio */
+      max-height: 400px;
+      /* Limits very tall images */
+      object-fit: contain;
+      /* Fits within max height without cropping */
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.03);
+    }
+
+    /* ✅ Responsive adjustments */
+    @media (max-width: 900px) {
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 columns on tablet */
+      }
+    }
+
+    @media (max-width: 600px) {
+      .gallery {
+        grid-template-columns: 1fr;
+        /* 1 column on mobile */
+      }
+    }
+
     .loader-wrapper {
       display: flex;
       justify-content: center;
@@ -136,7 +159,7 @@
       <img src="./assets/images/gallery/IMG_6377.jpeg" alt="IMG_6377" loading="lazy">
       <img src="./assets/images/gallery/IMG_6380.jpeg" alt="IMG_6380" loading="lazy">
       <img src="./assets/images/gallery/IMG_0003.JPG" alt="IMG_6380" loading="lazy">
-      <img src="./assets/images/gallery/IMG_0001.JPG" alt="IMG_6380" loading="lazy">
+      <img src="./assets/images/gallery/IMG_0001.jpg" alt="IMG_6380" loading="lazy">
       <!-- Add more images here -->
     </div>
   </div>
